@@ -4,10 +4,7 @@ import numpy as np
 from sklearn.metrics import roc_curve, roc_auc_score
 
 def iou_score(bbox1, bbox2):
-    """Jaccard index or Intersection over Union.
     
-    https://en.wikipedia.org/wiki/Jaccard_index
-    """
     assert len(bbox1) == 4
     assert len(bbox2) == 4
     s1 = (bbox1[2] - bbox1[0]) * (bbox1[3] - bbox1[1])
@@ -19,8 +16,6 @@ def iou_score(bbox1, bbox2):
     return 1.0 * intersection / union
 
 def best_match(pred_bboxes, true_bboxes, decision_function):
-    """Calculate best matching between two bbox lists.
-    """
     matched, false_negative, false_positive = [], [], []
     
     _pred_bboxes = np.array(pred_bboxes, dtype=np.int32) # Make a copy
@@ -82,7 +77,6 @@ def average_precision(precision, recall):
     return result / 11
 
 def auc(x, y):
-    """Calculate auc score."""
     x, y = np.array(x), np.array(y)
     order = x.argsort()
     x = x[order]
